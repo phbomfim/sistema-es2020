@@ -1,0 +1,14 @@
+/* PGS EXCLUIR - INICIO */
+.excluir
+{
+	text-align: center;
+}
+
+.excluir button
+{
+	display: inline-block;
+	width: 120px;
+	margin-left: 20px;
+	margin-right:20px;
+}
+/* PGS EXCLUIR - FINAL */

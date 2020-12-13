@@ -1,0 +1,42 @@
+.menu-link:hover 
+{
+	opacity: 0.8;
+}
+
+/* um link é naturalmente azul */
+.menu-link
+{
+	text-decoration: none;
+	text-align: center;
+    font: 400 13.3333px Arial;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+    width: 35%;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
+    margin-top: 25px;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+
+.edit-input
+{
+	margin-bottom: 5px;
+}
+
+.edit-input input[type="radio"]
+{
+	width: 5%;
+}
+
+.edit-input input[type=text], .edit-input input[type=password], 
+.edit-input input[type=number], .edit-input input[type=email], .edit-input input[type=usuario_adm]
+{
+	width: 90%;
+}

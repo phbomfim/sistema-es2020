@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ 
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css\acessar.css">
+    	<link rel="shortcut icon" href="imagens\cpd.ico">
+      <title> SISTEMA DE GERENCIAMENTO - UF </title>
+    </head>
+
+
+  <header>
+    <h1> SISTEMA DE GERENCIAMENTO </h1>
+  </header>
+
+	<body>
+
+    <div class="conteudo-completo">
+  		<form name="login" action="action\login.php" method="post">
+  			<div class="container">
+                  
+        			<div class="blocos">
+                      <label for="uname" class="bold">Usuário :</label>
+                      <input type="text" placeholder="Digite seu usuário" name="uname">
+                  </div>
+                  
+                  <div class="blocos">
+        			   <label for="psw" class="bold">Senha :</label>
+        			   <input type="password" placeholder="Digite sua senha" name="psw">
+                  </div>
+                  
+        			<button type="submit">Login</button>
+        			<label id="check-lembrar">
+          			<input type="checkbox" checked="checked" name="remember">Lembrar-me
+        			</label>
+      		</div>
+  		</form>
+    </div>
+	</body>
+</html>

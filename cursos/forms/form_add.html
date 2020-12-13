@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset = "utf8">
+  <link rel="stylesheet" href="..\..\css\actions.css">
+  <link rel="stylesheet" href="..\..\css\casseb_style.css">
+	<title>Sistema - Cadastrar Curso</title>
+</head>
+
+<header>
+  <h1>Cadastrar Curso</h1>  
+</header>
+
+<body class="casseb-style">
+  <div class="conteudo-completo">
+    <form name ="add" action="add.php" method="post">
+
+    		<p class="bold">Nome:</p> <input type="text" name="nome" value="" placeholder=" Digite o nome">
+			<p class="bold">grau:</p> <input type="text" name="grau" value="" placeholder=" Digite o endereço">
+			<p class="bold">codigo:</p> <input type="text" name="codigo" value ="" placeholder="Informe a codigo">
+    		<p class="bold">ato_auto:</p> <input type="text" name="ato_auto" value="" placeholder="Informe o ato_auto">
+    		<p class="bold">ato_rec:</p> <input type="text" name="ato_rec" value="" placeholder=" Informe o registro do ato_rec">
+    		<p class="bold">ato_ren:</p> <input type="text" name="ato_ren" value="" placeholder=" Informe a Instituição ato_ren">
+			<p class="bold">obs:</p> <input type="text" name="obs" value="" placeholder="Informe a obs">
+
+    		<button type="submit" value="Cadastrar">Cadastrar</button>
+  	</form>
+  </div>
+
+	<form action="..\index.php">
+    <button type="submit" value="Menu Anterior" class="menu-button">Voltar ao Menu Anterior</button>
+  </form>
+</body>
+</html>

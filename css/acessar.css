@@ -1,0 +1,85 @@
+.img-avatar 
+{
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.bold
+{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.conteudo-completo
+{
+    padding: 25px;
+    margin: 40px 20%;
+    border: 3px solid #f1f1f1;
+    border-radius: 5px;  
+}
+
+.conteudo-direcionar
+{
+	padding: 25px;
+    margin: 40px 20%;
+}
+
+
+#check-lembrar
+{
+	display: block;
+	text-align: center;
+	margin-top: 1em;
+}
+
+h1
+{
+	margin-top: 40px;
+	text-align: center;
+}
+
+body 
+{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h2,h3,h4 
+{
+	font-family:  Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+
+input[type=text], input[type=password], input[type=number], input[type=email], input[type=usuario_adm]
+{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+button 
+{
+	background-color: rgb(26, 63, 103);
+	color: white;
+	padding: 14px 20px;
+	border: none;
+	cursor: pointer;
+
+	font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+    width: 35%;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+button:hover 
+{
+	opacity: 0.8;
+}
