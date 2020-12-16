@@ -1,7 +1,20 @@
 <?php 
     include "conexao.php";
 
+    session_start();
+
+	if((!isset ($_SESSION['uname']) == true) and (!isset ($_SESSION['psw']) == true) and (!isset ($_SESSION['role']) == true)){
+
+		unset($_SESSION['uname']);
+		unset($_SESSION['psw']);
+		unset($_SESSION['role']);
+	  	header('location:index.html');
+  	}
+
+    $cargo = $_SESSION['role'];
+    
     $query = "SELECT * FROM validadora" ;
+
 ?>
 
 <!DOCTYPE html>
@@ -19,60 +32,64 @@
     <br><br>
     <body>
 
-        <form name ="add" action="forms\form_add.html" method="post">
-            <button type="submit"> Adicionar Instituição </button>
-        </form>
-        <form action="..\index_two.php">
-            <button type="submit" class="menu-button">Retornar ao Menu Anterior</button>
-        </form>
+        <?php if( $cargo =="superintendente"){ ?> 
+            <form name ="add" action="forms\form_add.html" method="post">
+                <button type="submit"> Adicionar Instituição </button>
+            </form>
+        <?php } ?>
 
-        <?php 
+            <form action="..\index_two.php">
+                <button type="submit" class="menu-button">Retornar ao Menu Anterior</button>
+            </form>
 
-        if ($stmt = $con->prepare($query)) {
-            $stmt->execute();
-            $stmt->bind_result($id, $nome, $endereco, $cidade, $estado, $mec, $mantenedora,$usuario,$instituicao);    
-        ?>
+            <?php 
 
-        <table border = "1">
-            <thead>
+            if ($stmt = $con->prepare($query)) {
+                $stmt->execute();
+                $stmt->bind_result($id, $nome, $endereco, $cidade, $estado, $mec, $mantenedora,$usuario);    
+            ?>
+
+            <table border = "1">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Endereço</td>
+                        <td>Cidade</td>
+                        <td>Estado</td>
+                        <td>MEC</td>
+                        <td>Mantenedora</td>
+                        <td>Usuário</td>
+                        <?php if( $cargo =="superintendente"){ ?> 
+                            <td>Ação</td>
+                         <?php } ?>
+                    </tr>
+                </thead>
+
+            <?php while ($stmt->fetch()) {  ?>
+
                 <tr>
-                    <td>Nome</td>
-                    <td>Endereço</td>
-                    <td>Cidade</td>
-                    <td>Estado</td>
-                    <td>MEC</td>
-                    <td>Mantenedora</td>
-                    <td>Usuário</td>
-                    <td>Instituição</td>
-                    <td>Ação</td>
+                    <td><?php printf("%s", $nome)?></td>
+                    <td><?php printf("%s", $endereco)?></td>
+                    <td><?php printf("%s", $cidade)?></td>
+                    <td><?php printf("%s", $estado)?></td>
+                    <td><?php printf("%s", $mec)?></td>
+                    <td><?php printf("%s", $mantenedora)?></td>
+                    <td><?php printf("%s", $usuario)?></td>
+                    <?php if( $cargo =="superintendente"){ ?> 
+                        <td><a href="action\editar.php?id=<?php echo $id;?>">Editar</a> |
+                            <a href="action\excluir.php?id=<?php echo $id;?>">Excluir</a> 
+                    <?php } ?> 
                 </tr>
-            </thead>
-
-        <?php while ($stmt->fetch()) {  ?>
-
-            <tr>
-                <td><?php printf("%s", $nome)?></td>
-                <td><?php printf("%s", $endereco)?></td>
-                <td><?php printf("%s", $cidade)?></td>
-                <td><?php printf("%s", $estado)?></td>
-                <td><?php printf("%s", $mec)?></td>
-                <td><?php printf("%s", $mantenedora)?></td>
-                <td><?php printf("%s", $usuario)?></td>
-                <td><?php printf("%s", $instituicao)?></td>
-                <td><a href="action\editar.php?id=<?php echo $id;?>">Editar</a> |
-                    <a href="action\excluir.php?id=<?php echo $id;?>">Excluir</a>       
-                </td>
-            </tr>
+                
+            <?php }
+                    $stmt->close();
+                }
+            ?>
             
-        <?php }
-                $stmt->close();
-            }
-        ?>
-        
-        </table>
+            </table>
 
-        <?php
-            $con->close();
-        ?>
+            <?php
+                $con->close();
+            ?>
     </body>
 </html>

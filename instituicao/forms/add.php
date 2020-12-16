@@ -14,14 +14,14 @@
 		 VALUES (NULL,'$nome' ,'$endereco', '$cidade', '$estado', '$mec' ,'$mantenedora','$usuario' )";
 		 
 	if (mysqli_query($con, $insere)) {
-		echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado!');window.location.href='..\index.php';</script>";
+		echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado!');window.location.href='../index.php';</script>";
 	}
 	
 	else {
 		echo "Error: " . $insere . "<br>" . mysqli_error($con);
 	}
 
-	exit('<meta http-equiv="refresh" content="4;url=..\index.php" />');
+	exit('<meta http-equiv="refresh" content="4;url=../index.php" />');
 
 ?>
  	

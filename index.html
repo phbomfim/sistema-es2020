@@ -14,22 +14,33 @@
   </header>
 
 	<body>
-
     <div class="conteudo-completo">
   		<form name="login" action="action\login.php" method="post">
   			<div class="container">
-                  
         			<div class="blocos">
-                      <label for="uname" class="bold">Usuário :</label>
-                      <input type="text" placeholder="Digite seu usuário" name="uname">
-                  </div>
+                <label for="uname" class="bold">Usuário :</label>
+                <input type="text" placeholder="Digite seu usuário" name="uname">
+              </div>
                   
-                  <div class="blocos">
-        			   <label for="psw" class="bold">Senha :</label>
-        			   <input type="password" placeholder="Digite sua senha" name="psw">
-                  </div>
-                  
-        			<button type="submit">Login</button>
+              <div class="blocos">
+                <label for="psw" class="bold">Senha :</label>
+                <input type="password" placeholder="Digite sua senha" name="psw">
+              </div>
+              <br>
+              <div class="blocos">
+                <label for="role">Cargo:</label>
+                  <select name="role" id="role">
+                    <option value="coordenador">Coordenador</option>
+                    <option value="diretor">Diretor</option>
+                    <option value="dirigente">Dirigente</option>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="superintendente">Superintendente</option>
+                    <option value="visitante">Visitante</option>
+                  </select>
+              </div>
+
+              <button type="submit">Login</button>
+              
         			<label id="check-lembrar">
           			<input type="checkbox" checked="checked" name="remember">Lembrar-me
         			</label>

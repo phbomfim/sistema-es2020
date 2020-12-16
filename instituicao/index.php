@@ -1,7 +1,27 @@
 <?php 
     include "conexao.php";
 
-    $query = "SELECT * FROM instituicao" ;
+    session_start();
+
+	if((!isset ($_SESSION['uname']) == true) and (!isset ($_SESSION['psw']) == true) and (!isset ($_SESSION['role']) == true)){
+
+		unset($_SESSION['uname']);
+		unset($_SESSION['psw']);
+		unset($_SESSION['role']);
+	  	header('location:index.html');
+  	}
+
+	$logado = $_SESSION['uname'];
+	$senha = $_SESSION['psw'];
+    $cargo = $_SESSION['role'];
+
+    //if ($cargo === 'superintendente'){
+        $query = "SELECT * FROM instituicao" ;
+    //}
+
+    //elseif ($cargo === 'diretor'){
+    //    $query = "SELECT * FROM instituicao WHERE usuario = SEUID";
+    //}
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +39,12 @@
     <br><br>
     <body>
 
-        <form name ="add" action="forms\form_add.html" method="post">
-            <button type="submit"> Adicionar Instituição </button>
-        </form>
+        <?php if( $cargo =="dirigente"){ ?> 
+            <form name ="add" action="forms\form_add.html" method="post">
+                <button type="submit"> Adicionar Instituição </button>
+            </form>
+        <?php } ?>
+
         <form action="..\index_two.php">
             <button type="submit" class="menu-button">Retornar ao Menu Anterior</button>
         </form>
@@ -30,7 +53,7 @@
 
         if ($stmt = $con->prepare($query)) {
             $stmt->execute();
-            $stmt->bind_result($id, $nome, $endereco, $cidade, $estado, $mec, $mantenedora,$usuario);    
+            $stmt->bind_result($id, $nome, $endereco, $cidade, $estado, $mec, $mantenedora,$usuario,$aut,$validadora);    
         ?>
 
         <table border = "1">
@@ -43,7 +66,11 @@
                     <td>MEC</td>
                     <td>Mantenedora</td>
                     <td>Usuário</td>
+                    <td>Validadora</td>
+                    <td>Status</td>
+                <?php if( $cargo =="diretor" || $cargo=="superintendente"){ ?> 
                     <td>Ação</td>
+                <?php } ?>
                 </tr>
             </thead>
 
@@ -57,9 +84,18 @@
                 <td><?php printf("%s", $mec)?></td>
                 <td><?php printf("%s", $mantenedora)?></td>
                 <td><?php printf("%s", $usuario)?></td>
-                <td><a href="action\editar.php?id=<?php echo $id;?>">Editar</a> |
-                    <a href="action\excluir.php?id=<?php echo $id;?>">Excluir</a>       
+                <td><?php printf("%s", $validadora)?></td>
+                <td><?php if ($aut =='0') printf("%s", "Não autorizada")?>
+                    <?php if ($aut =='1') printf("%s", "Autorizada")?>
                 </td>
+                <td>
+                <?php if( $cargo =="diretor"){ ?> 
+                        <a href="action\editar.php?id=<?php echo $id;?>">Editar</a> |
+                        <a href="action\excluir.php?id=<?php echo $id;?>">Excluir</a>
+                <?php } ?>
+                <?php if( $cargo =="superintendente"){ ?> 
+                    <a href="action\aut.php?id=<?php echo $id;?>&aut=<?php echo $aut;?>">Alterar status</a></td>
+                <?php } ?>
             </tr>
             
         <?php }

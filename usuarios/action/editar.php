@@ -30,7 +30,7 @@
         	
             	if ($stmt = $con->prepare($query)) {
                         $stmt->execute();
-                        $stmt->bind_result($id, $role, $nome, $sobrenome, $cpf, $telefone, $email,$senha);
+                        $stmt->bind_result($id, $role, $nome, $sobrenome, $cpf, $telefone, $email,$senha,$aut);
             ?>
 
            	<table >
@@ -42,7 +42,6 @@
                         <td>CPF</td>
                         <td>Telefone</td>
                         <td>Email</td>
-                        <td>Ação</td>
                     </tr>
             </thead>
 

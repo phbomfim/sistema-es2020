@@ -9,9 +9,10 @@
 	$telefone = $_POST['telefone'];
 	$email = $_POST['email'];
 	$senha = $_POST['senha'];
+	$aut = $_POST['aut'];
 
-	$insere = "INSERT INTO usuarios (id, role, nome, sobrenome, cpf, telefone, email, senha)
-		 VALUES (NULL,'$role' ,'$nome', '$sobrenome', '$cpf', '$telefone' ,'$email','$senha')";
+	$insere = "INSERT INTO usuarios (id, role, nome, sobrenome, cpf, telefone, email, senha, aut)
+		 VALUES (NULL,'$role' ,'$nome', '$sobrenome', '$cpf', '$telefone' ,'$email','$senha','$aut')";
 		 
 	if (mysqli_query($con, $insere)) {
 		echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado!');window.location.href='../index.php';</script>";

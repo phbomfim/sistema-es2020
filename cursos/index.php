@@ -39,9 +39,9 @@
                     <td>Nome</td>
                     <td>Grau</td>
                     <td>Código e-MEC</td>
-                    <td>Ato de auto</td>
-                    <td>Ato de rec</td>
-                    <td>Ato de ren</td>
+                    <td>Ato de Autorização</td>
+                    <td>Ato de Reconhecimento</td>
+                    <td>Ato de Renovação</td>
                     <td>Observação</td>
                     <td>Ação</td>
                 </tr>

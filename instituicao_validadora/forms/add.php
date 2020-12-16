@@ -9,10 +9,9 @@
 	$mec = $_POST['mec'];
 	$mantenedora = $_POST['mantenedora'];
 	$usuario = $_POST['usuario'];
-	$instituicao = $_POST['instituicao'];
 
-	$insere = "INSERT INTO validadora (id, nome, endereco, cidade, estado, mec, mantenedora, usuario, instituicao)
-		 VALUES (NULL,'$nome' ,'$endereco', '$cidade', '$estado', '$mec' ,'$mantenedora','$usuario','$instituicao' )";
+	$insere = "INSERT INTO validadora (id, nome, endereco, cidade, estado, mec, mantenedora, usuario)
+		 VALUES (NULL,'$nome' ,'$endereco', '$cidade', '$estado', '$mec' ,'$mantenedora','$usuario')";
 		 
 	if (mysqli_query($con, $insere)) {
 		echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado!');window.location.href='../index.php';</script>";
