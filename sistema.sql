@@ -28,12 +28,10 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   `ato_ren` varchar(50) DEFAULT NULL,
   `obs` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela sistema.cursos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela sistema.cursos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
-INSERT INTO `cursos` (`id`, `nome`, `grau`, `codigo`, `ato_auto`, `ato_rec`, `ato_ren`, `obs`) VALUES
-	(1, 'Curso1', 'Grau1', 'Cod1', 'Ato1', 'Ato12', 'Ato13, Ato14, Ato 26', 'Ob2');
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela sistema.instituicao
@@ -46,35 +44,43 @@ CREATE TABLE IF NOT EXISTS `instituicao` (
   `mec` varchar(50) DEFAULT NULL,
   `mantenedora` varchar(50) DEFAULT NULL,
   `usuario` int(11) DEFAULT NULL,
+  `aut` enum('0','1') DEFAULT '0',
+  `validadora` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_instituicao_usuarios` (`usuario`),
-  CONSTRAINT `FK_instituicao_usuarios` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  KEY `Index 3` (`validadora`) USING BTREE,
+  CONSTRAINT `FK_instituicao_usuarios` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `FK_instituicao_validadora` FOREIGN KEY (`validadora`) REFERENCES `validadora` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela sistema.instituicao: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela sistema.instituicao: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `instituicao` DISABLE KEYS */;
-INSERT INTO `instituicao` (`id`, `nome`, `endereco`, `cidade`, `estado`, `mec`, `mantenedora`, `usuario`) VALUES
-	(4, 'UNIME', 'Avenida Paralela', 'Salvador', 'Bahia', '91229-0', 'UFBA', 2);
+INSERT INTO `instituicao` (`id`, `nome`, `endereco`, `cidade`, `estado`, `mec`, `mantenedora`, `usuario`, `aut`, `validadora`) VALUES
+	(1, 'UNIFACS', 'Av Tancredo Neves', 'Salvador', 'Bahia', 'MEC3', 'Mantenedora1', 2, '0', 1);
 /*!40000 ALTER TABLE `instituicao` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela sistema.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` enum('diretor','funcionario','dirigente','superintendente','coordenador') NOT NULL DEFAULT 'funcionario',
+  `role` enum('diretor','funcionario','dirigente','superintendente','coordenador','visitante') NOT NULL DEFAULT 'funcionario',
   `nome` varchar(50) NOT NULL DEFAULT '',
   `sobrenome` varchar(50) NOT NULL DEFAULT '',
   `cpf` varchar(15) NOT NULL DEFAULT '',
   `telefone` varchar(11) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL DEFAULT '',
   `senha` varchar(50) NOT NULL DEFAULT '',
+  `aut` enum('0','1') DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela sistema.usuarios: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela sistema.usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`, `role`, `nome`, `sobrenome`, `cpf`, `telefone`, `email`, `senha`) VALUES
-	(2, 'funcionario', 'guest', 'Teste', '354.423', '719988', 'example@example', '123'),
-	(3, 'diretor', 'Diretor1', 'Diretor2', '888.999', '718899', 'diretor@mail', 'senha1122');
+INSERT INTO `usuarios` (`id`, `role`, `nome`, `sobrenome`, `cpf`, `telefone`, `email`, `senha`, `aut`) VALUES
+	(1, 'superintendente', 'ph', 'Bomfim', '888.999.100-11', '71999632241', 'paulo@ufba.br', '123', '1'),
+	(2, 'diretor', 'diretor', 'Bomfim', '888.999.100-11', '71999632241', 'paulo@ufba.br', '123', '1'),
+	(3, 'superintendente', 'super', 'Bomfim', '888.999.100-11', '71999632241', 'paulo@ufba.br', '123', '0'),
+	(4, 'funcionario', 'func', 'Bomfim', '888.999.100-11', '71999632241', 'paulo@ufba.br', '123', '0'),
+	(5, 'dirigente', 'dirig', 'Bomfim', '888.999.100-11', '71999632241', 'paulo@ufba.br', '123', '1');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela sistema.validadora
@@ -87,18 +93,15 @@ CREATE TABLE IF NOT EXISTS `validadora` (
   `mec` varchar(50) DEFAULT NULL,
   `mantenedora` varchar(50) DEFAULT NULL,
   `usuario` int(11) DEFAULT NULL,
-  `instituicao` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Index 2` (`usuario`) USING BTREE,
-  KEY `Index 3` (`instituicao`) USING BTREE,
-  CONSTRAINT `FK_validadora_instituicao` FOREIGN KEY (`instituicao`) REFERENCES `instituicao` (`id`),
   CONSTRAINT `FK_validadora_usuarios` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela sistema.validadora: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela sistema.validadora: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `validadora` DISABLE KEYS */;
-INSERT INTO `validadora` (`id`, `nome`, `endereco`, `cidade`, `estado`, `mec`, `mantenedora`, `usuario`, `instituicao`) VALUES
-	(1, 'Valid1', 'Endr2', 'Cidad2', 'Estad2', 'MEC2', 'Mant2', 2, 4);
+INSERT INTO `validadora` (`id`, `nome`, `endereco`, `cidade`, `estado`, `mec`, `mantenedora`, `usuario`) VALUES
+	(1, 'UFBA', 'Ondina', 'Salvador', 'Bahia', 'MEC1', 'Mantenedora2', 3);
 /*!40000 ALTER TABLE `validadora` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
