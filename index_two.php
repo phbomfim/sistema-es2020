@@ -67,6 +67,12 @@
 					</form>
 			<?php	
 				}
+				if( $cargo =="superintendente" ){ ?> <!--SUPER  -->
+					<form method="get" action="">
+						<button type="submit">Validação</button>
+					</form>
+			<?php	
+				}
 				if( $cargo =="funcionario"){ ?> <!-- CURSOS - SÓ FUNCIONARIO MEXE -->
 					<form method="get" action="cursos\index.php">
 						<button type="submit">Cursos</button>

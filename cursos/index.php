@@ -22,6 +22,9 @@
         <form name ="add" action="forms\form_add.html" method="post">
             <button type="submit"> Adicionar Cursos </button>
         </form>
+        <form name ="add" action="upload\upload.php" method="post">
+            <button type="submit"> Inserir Arquivo </button>
+        </form>
         <form action="..\index_two.php">
             <button type="submit" class="menu-button">Retornar ao Menu Anterior</button>
         </form>

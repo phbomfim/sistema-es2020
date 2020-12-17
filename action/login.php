@@ -22,8 +22,8 @@
 	}
 	
 	// Parametros
-	$inicio = '08:00:00';
-	$fim = '18:00:00';
+	$inicio = '00:00:00';
+	$fim = '23:59:59';
 	$agora = date("H:i:s");
 	
 	// Chamada
